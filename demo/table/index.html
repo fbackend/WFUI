@@ -1,9 +1,6 @@
-<div class="wmm-modules">
+<div class="wmm-module">
+    <div id="table">
 
-    <div class="wmm-module">
-        <div id="table">
-
-        </div>
     </div>
 </div>
 
@@ -15,16 +12,18 @@
                 el: "table",
                 url: "/demo/table/data.json",
                 multiple: "true",
+                multipleFixed:false,
                 defines: [
                     {
                         head: "ID",
                         prop: "id"
                     }, {
                         head: "服务名",
-                        prop: "app"
+                        prop: "app",
                     }, {
                         head: "资源名称",
-                        prop: "resource"
+                        prop: "resource",
+                        width: 500
                     }, {
                         head: "限流阈值",
                         prop: "count"

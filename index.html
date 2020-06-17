@@ -13,22 +13,14 @@
     <script src="/wfui/modules/modules/modules.js"></script>
 </head>
 
-<body>
+<body class="wmm-body">
 <div class="page-container"></div>
 </body>
 <script>
     var _idxPage = {
         initRoute: function () {
             //init router
-            layui.router.init({
-                hashMode: AppConfig.route.hashMode,
-                contextPath: AppConfig.route.contextPath,
-                page404: AppConfig.route.page404,
-                templateType: AppConfig.route.templateType,
-                cache: AppConfig.route.cache,
-                animate: AppConfig.route.animate,
-                enableFadeOutAnimate: AppConfig.route.enableFadeOutAnimate,
-            });
+            layui.router.init(AppConfig.route);
 
             if (AppConfig.page.index && AppConfig.page.index.route && layui.router.path.length === 0) {
                 layui.router.route({

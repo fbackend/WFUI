@@ -1,6 +1,7 @@
 :root {
     --background-color:#2F4056;
     --active-color: #1E9FFF;
+    --sidebar-width:160px
 }
 
 .theme-color{
@@ -27,9 +28,13 @@ template {
     font-size: 14px !important;
 }
 
-
 .layui-layout-admin .layui-side{
-    width: 160px;
+    width: var(--sidebar-width);
+}
+
+.layui-layout-admin,.layui-body,.layui-footer{
+    bottom: 30px !important;
+    left: var(--sidebar-width) !important;
 }
 
 .wmm-left-menus-container a{
@@ -37,9 +42,6 @@ template {
 }
 .wmm-left-menus-container .menu-list{
     width: 100% !important;
-}
-.wmm-body,.wmm-footer{
-    left:150px !important;
 }
 
 .wmm-top-link{
@@ -85,7 +87,7 @@ template {
     background-color:var(--active-color) !important;
 }
 .layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after{
-    background-color:var(--active-color) !important;   
+    background-color:var(--active-color) !important;
 }
 .layui-nav-tree .layui-nav-item a:hover {
     background-color:var(--background-color) !important;
@@ -109,10 +111,9 @@ template {
     height: 30px !important;
     line-height: 35px !important;
     text-align: center;
+    bottom: 0 !important;
 }
-.layui-layout-admin .layui-body{
-    bottom: 30px !important;
-}
+
 
 /**
 布局定义
@@ -120,9 +121,10 @@ template {
 .wmm-module{
     margin: 10px 10px 0 20px;
     padding: 10px;
-    box-shadow: 0 0 7px rgba(0, 0, 0, .23);
+    /*box-shadow: 0 0 2px rgba(0, 0, 0, .23);*/
     flex: 1;
-    border-radius: 5px;
+    border-radius: 3px;
+    background-color: white;
 }
 
 .wmm-modules{
@@ -138,10 +140,10 @@ template {
 }
 
 .wmm-modules-line{
-  display: flex;
-  padding: 0 1%;
-  width: 100%;
-  box-sizing: border-box;
+    display: flex;
+    padding: 0 1%;
+    width: 100%;
+    box-sizing: border-box;
 
 }
 
@@ -150,13 +152,16 @@ template {
     position: absolute;
     left: 0;
     right: 0;
+    bottom: 0;
+    top: 40px;
+    background-color: #eee;
 }
 
 /**
 布局定义结束
 **/
 .layui-body{
-    overflow-x: hidden; overflow-y: hidden; 
+    overflow-x: hidden; overflow-y: hidden;
 }
 
 em,
@@ -296,7 +301,7 @@ i {
 .layui-input, .layui-select, .layui-textarea{
     height: 34px;
     border: 1px solid #c2cad8!important;
-    border-radius: 5px !important;
+    border-radius: 3px !important;
 }
 .required-star{
     color:red
@@ -396,25 +401,10 @@ i {
 .layui-unselect.layui-form-checkbox.layui-form-checked[lay-skin=primary] span{
     background: #fff!important;
 }
-/* .inputDataTwo .layui-form-checked span{
-    background: #fff!important;
-} */
-/* .layui-form-pane .inputDataFirst .layui-form-checkbox {
-    margin: 2px 0 11px 10px;
-}
-.layui-form-pane .inputDataTwo .layui-form-checkbox {
-    margin: 8px 0 17px 10px;
-} */
-/* .layui-form-label,.layui-textarea{
-    border-radius: 5px 0 0 5px !important;
-} */
-/* .layui-form-pane .layui-form-radio, .layui-form-pane .layui-form-switch {
-    margin-top: 3px;
-    margin-left: 8px;
-}*/
+
 .input-button {
     margin-top: 10px;
-} 
+}
 .datatable .layui-form-switch {
     margin-top: 0px;
 }
@@ -447,7 +437,7 @@ i {
 .layui-input:focus{
     border-color: var(--active-color) !important;
     outline:0;
-    box-shadow: 0 0 7px var(--active-color);
+    box-shadow: 0 0 4px var(--active-color);
 }
 
 .inputDataTwo {
@@ -549,8 +539,8 @@ i {
 
 }
 .express-margin+.layui-form-switch i{
-     top:2px
- }
+    top:2px
+}
 .express-margin+.layui-form-switch em{
     top: -2px;
 }

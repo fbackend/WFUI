@@ -16,6 +16,7 @@ var AppConfig = {
         //路由404页面
         page404: "/fastboot/pages/404",
         cache: true,
+        selector:".page-container",
         templateType: "html",
     },
 

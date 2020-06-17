@@ -18,7 +18,8 @@ layui.define(['utils', 'laypage', 'layer', 'req', 'utils', 'spop', 'form'], func
             //是否开启查询条件缓存（默认开启）
             this.queryCache = props.queryCache === undefined ? true : props.queryCache;
 
-            this.height = props.height || document.querySelector(".page-container").clientHeight - 250;
+            this.parentSelector = props.parentSelector || ".page-container"
+            this.height = props.height || document.querySelector(this.parentSelector).clientHeight - 250;
 
             //enable multiple on first column
             this.multiple = props.multiple || false;
@@ -959,7 +960,7 @@ layui.define(['utils', 'laypage', 'layer', 'req', 'utils', 'spop', 'form'], func
                  * 刷新高度
                  */
                 flushHeight() {
-                    _that.height = document.querySelector(".page-container").clientHeight - 250;
+                    _that.height = document.querySelector(_that.parentSelector).clientHeight - 250;
                     _that.height = _that.height < 300 ? 300 : _that.height;
                     let datatableBody = document.querySelector("#" + _that.el + "-datatable");
                     let datatableFixedBodies = document.querySelectorAll("." + _that.el + "-datatable-body-fixed");
@@ -1528,20 +1529,27 @@ layui.define(['utils', 'laypage', 'layer', 'req', 'utils', 'spop', 'form'], func
                     conditional = conditional || ((checkData, data) => {
                         return checkData.id === data.id;
                     });
+
                     let list = this.getList() || [];
                     for (let i = 0; i < list.length; i++) {
+                        let dataTr = document.querySelector("#" + _that.el)
+                            .querySelector('[data-index="' + i + '"]');
+                        let ckboxElem = dataTr.querySelector(".datatable-multiple-checkbox");
+                        ckboxElem.checked = false;
+
+                        let datatableFixedBodies,shadowDataTr,shadowCkboxElem;
+                        if (_that.multipleFixed) {
+                            datatableFixedBodies = document.querySelector("." + _that.el + "-datatable-body-fixed");
+                            shadowDataTr = datatableFixedBodies.querySelector('[data-index="' + i + '"]');
+                            shadowCkboxElem = shadowDataTr.querySelector(".datatable-multiple-checkbox");
+                            shadowCkboxElem.checked = false;
+                        }
+                        layui.form.render()
                         dataArray.forEach(checkData => {
                             if (conditional(checkData, list[i])) {
-                                let dataTr = document.querySelector("#" + _that.el)
-                                    .querySelector('[data-index="' + i + '"]');
-                                let ckboxElem = dataTr.querySelector(".datatable-multiple-checkbox");
                                 ckboxElem.checked = true;
                                 builder.flushCheckedParent(ckboxElem);
-
                                 if (_that.multipleFixed) {
-                                    let datatableFixedBodies = document.querySelector("." + _that.el + "-datatable-body-fixed");
-                                    let shadowDataTr = datatableFixedBodies.querySelector('[data-index="' + i + '"]');
-                                    let shadowCkboxElem = shadowDataTr.querySelector(".datatable-multiple-checkbox");
                                     shadowCkboxElem.checked = true;
                                 }
                                 layui.form.render()
